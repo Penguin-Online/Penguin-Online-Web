@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IceChat - Penguin Online</title>
+    <style>
+       body {
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(to bottom, #000080, #ADD8E6);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background-repeat: repeat;
+            background-size: cover;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border: 3px double #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #00FFFF;
+            text-shadow: 3px 3px 5px #000000;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px dashed #87CEEB;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .feature h2 {
+            color: #FFD700;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+
+        .emoticon {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #87CEEB;
+            border-top: 1px dotted #FFFFFF;
+            padding-top: 10px;
+        }
+
+        .penguin-image {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border: 2px solid #FFFFFF;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        #messageArea {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #87CEEB;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IceChat</h1>
+        <p>Join the Rookery Rumble or Fish Tales chat rooms!</p>
+        <p>Connect with your buddies and have a chat.</p>
+        <p>Manage your buddy lists and send instant messages.</p>
+        <div id="messageArea"></div>
+        <a href="index.html">Back to Main Page</a>
+    </div>
+
+    <script>
+        function displayRandomMessage() {
+            const messages = [
+                "Hey there! Any fish stories to share?",
+                "Waddle waddle! Let's chat!",
+                "Brrr! It's cold out here!",
+                "Anyone up for a sledding race?",
+                "Just caught a big one!",
+                "Greetings from the South Pole!",
+                "Check out my new igloo!",
+                "Krill anyone?"
+            ];
+
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            const randomMessage = messages[randomIndex];
+
+            document.getElementById('messageArea').textContent = randomMessage;
+
+            // Generate a random time between 3 and 15 seconds (adjust as needed)
+            const randomTime = Math.floor(Math.random() * 12000) + 3000;
+
+            setTimeout(displayRandomMessage, randomTime);
+        }
+
+        // Start the random message display
+        displayRandomMessage();
+    </script>
+</body>
+</html>
