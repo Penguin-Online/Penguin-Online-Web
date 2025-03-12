@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frost Forecast - Penguin Online</title>
+    <style>
+       body {
+            font-family: sans-serif;
+            background: linear-gradient(to bottom, #87CEEB, #FFFFFF);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #008B8B;
+        }
+
+        .penguin-image {
+          max-width: 150px;
+          margin-bottom: 20px;
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+
+        .feature h2 {
+            color: #2F4F4F;
+            font-size: 1.2em;
+        }
+
+        .feature a {
+            color: #008B8B;
+            text-decoration: none;
+        }
+
+        .feature a:hover {
+            text-decoration: underline;
+        }
+
+        .feature p {
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        .emoticon {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #777;
+        }
+        #forecastMessage {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #87CEEB;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        #forecastMessage strong {
+            color: #00FFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frost Forecast</h1>
+        <p>Detailed weather reports and ice flow updates.</p>
+        <p>Blizzard alerts and safety tips for penguins.</p>
+        <p>Stay frosty and informed with the latest weather information.</p>
+
+        <div id="forecastMessage"></div>
+
+        <a href="index.html">Back to Main Page</a>
+    </div>
+
+    <script>
+        function displayDailyForecast() {
+            const forecasts = [
+                "<strong>Frost Forecast:</strong> Brrr! It's an extra chilly day. Bundle up, penguins!",
+                "<strong>Frost Forecast:</strong> Mild temperatures today. A great day for fishing!",
+                "<strong>Frost Forecast:</strong> Warning! Blizzard conditions expected. Stay inside and stay safe!",
+                "<strong>Frost Forecast:</strong> Ice flow updates: Stable conditions, safe for travel.",
+                "<strong>Frost Forecast:</strong> A bit nippy today. Wear your warmest feathers!",
+                "<strong>Frost Forecast:</strong> Get ready for some sunshine! A lovely day on the ice.",
+                "<strong>Frost Forecast:</strong> High winds predicted. Be careful when waddling!",
+                "<strong>Frost Forecast:</strong> Expect light snow today. Perfect for sledding!"
+            ];
+
+            const today = new Date().toDateString(); // Get today's date as a string
+            const storedDate = localStorage.getItem('forecastDate');
+            const storedIndex = localStorage.getItem('forecastIndex');
+
+            if (storedDate === today && storedIndex !== null) {
+                // If it's the same day and a message was shown, display the stored one
+                document.getElementById('forecastMessage').innerHTML = forecasts[storedIndex];
+            } else {
+                // If it's a new day or no message was shown yet, pick a new random message
+                const randomIndex = Math.floor(Math.random() * forecasts.length);
+                const randomForecast = forecasts[randomIndex];
+
+                document.getElementById('forecastMessage').innerHTML = randomForecast;
+
+                // Store the date and the random message index
+                localStorage.setItem('forecastDate', today);
+                localStorage.setItem('forecastIndex', randomIndex);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayDailyForecast);
+    </script>
+</body>
+</html>
