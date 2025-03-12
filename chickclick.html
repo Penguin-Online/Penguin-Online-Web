@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chick Click - Penguin Online</title>
+    <style>
+         body {
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(to bottom, #000080, #ADD8E6);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background-repeat: repeat;
+            background-size: cover;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border: 3px double #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #00FFFF;
+            text-shadow: 3px 3px 5px #000000;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px dashed #87CEEB;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .feature h2 {
+            color: #FFD700;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+
+        .emoticon {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #87CEEB;
+            border-top: 1px dotted #FFFFFF;
+            padding-top: 10px;
+        }
+
+        .penguin-image {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border: 2px solid #FFFFFF;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        #storyArea {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #87CEEB;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: left;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        #storyArea h2 {
+            color: #FFD700;
+            text-decoration: underline;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chick Click</h1>
+        <p>Interactive stories and games for young penguins.</p>
+        <p>Coloring pages and fun activities for the little dudes.</p>
+        <p>Safe and engaging content for the next generation.</p>
+
+        <div id="storyArea"></div>
+
+        <a href="index.html">Back to Main Page</a>
+    </div>
+
+    <script>
+        function displayRandomStory() {
+            const stories = [
+                {
+                    title: "The Great Krill Chase",
+                    content: "Once upon a time, in the icy realm of Penguintopia, lived a young penguin named Pip. Pip loved krill more than anything in the world. One day, a massive krill shoal appeared on the horizon, glittering like a million tiny diamonds. Pip, along with his friends, set out on an epic chase, waddling and sliding across the ice, their hearts pounding with excitement. They faced many challenges, including slippery ice patches and mischievous seals, but they never gave up. Finally, they reached the krill shoal, enjoying a feast that filled their bellies and warmed their hearts. The end."
+                },
+                {
+                    title: "Pip's Sledding Adventure",
+                    content: "Pip the penguin loved sledding. One day, he found a super-long, icy slope. He jumped on his sled and zoomed down! He went faster and faster, past snow hills and ice tunnels. Suddenly, he saw a big jump! Pip held on tight, and his sled flew through the air! He landed safely, laughing. Pip had the best sledding adventure ever! He told all his friends, and they went sledding too. They all had a super fun time!"
+                },
+                {
+                    title: "The Lost Snowflake",
+                    content: "A tiny snowflake named Flurry drifted down from the sky, landing on Pip's beak. Flurry was lost and scared. Pip, being a kind penguin, decided to help Flurry find his way home. They traveled through snowy forests and across frozen lakes, meeting friendly snow hares and chatty ice fish along the way. Finally, they reached the Cloud Kingdom, where Flurry belonged. Flurry thanked Pip for his kindness, and Pip waddled back home, feeling warm and fuzzy inside."
+                },
+                {
+                    title: "The Friendly Seal",
+                    content: "One day, Pip was fishing when he saw a seal stuck in a hole in the ice. The seal looked sad. Pip knew he had to help. He tried to push the seal, but it was too heavy. Then, he had an idea! He called his friends, and together they pushed and pulled until the seal popped out! The seal was so happy! He thanked Pip and his friends with a big fish. They all shared the fish and became friends. It was a good day!"
+                },
+                {
+                    title: "The Mystery of the Missing Fish",
+                    content: "Pip and his friends were excited for the big fish festival. But when they got there, all the fish were gone! Who took the fish? Pip and his friends became detectives! They found footprints in the snow and fish scales by the ice caves. They followed the clues and found a sneaky polar bear with a big bag of fish! They told the polar bear it wasn't nice to steal. The polar bear was sorry and gave back the fish. The festival was saved!"
+                }
+            ];
+
+            const randomIndex = Math.floor(Math.random() * stories.length);
+            const randomStory = stories[randomIndex];
+
+            document.getElementById('storyArea').innerHTML = `<h2>${randomStory.title}</h2><p>${randomStory.content}</p>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', displayRandomStory);
+    </script>
+</body>
+</html>
