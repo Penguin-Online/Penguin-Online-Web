@@ -5,85 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IceChat - Penguin Online</title>
     <style>
-       body {
-            font-family: 'Arial Black', sans-serif;
-            background: linear-gradient(to bottom, #000080, #ADD8E6);
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            background-repeat: repeat;
-            background-size: cover;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border: 3px double #FFFFFF;
-            border-radius: 15px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            color: #00FFFF;
-            text-shadow: 3px 3px 5px #000000;
-            font-size: 2.5em;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .feature {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 2px dashed #87CEEB;
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            text-align: left;
-        }
-
-        .feature h2 {
-            color: #FFD700;
-            text-decoration: underline;
-            margin-bottom: 10px;
-        }
-
-        .emoticon {
-            font-size: 1.5em;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8em;
-            color: #87CEEB;
-            border-top: 1px dotted #FFFFFF;
-            padding-top: 10px;
-        }
-
-        .penguin-image {
-            max-width: 200px;
-            margin-bottom: 20px;
-            border: 2px solid #FFFFFF;
-            border-radius: 5px;
-        }
-
-        a {
-            color: #00FFFF;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-        #messageArea {
+        /* ... (Copy the CSS from index.html) ... */
+        #chatArea {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #87CEEB;
             border-radius: 5px;
             background-color: rgba(0, 0, 0, 0.5);
-            text-align: center;
+            height: 300px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        #chatInput {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border: 1px solid #87CEEB;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        #sendButton {
+            padding: 10px 20px;
+            background-color: #00FFFF;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #sendButton:hover {
+            background-color: #ADD8E6;
+        }
+        .message{
+            margin-bottom: 5px;
+        }
+        .message strong{
+            color: #00FFFF;
         }
     </style>
 </head>
@@ -93,36 +54,72 @@
         <p>Join the Rookery Rumble or Fish Tales chat rooms!</p>
         <p>Connect with your buddies and have a chat.</p>
         <p>Manage your buddy lists and send instant messages.</p>
-        <div id="messageArea"></div>
+        <div id="chatArea"></div>
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button id="sendButton">Send</button>
         <a href="index.html">Back to Main Page</a>
     </div>
 
     <script>
-        function displayRandomMessage() {
-            const messages = [
-                "Hey there! Any fish stories to share?",
-                "Waddle waddle! Let's chat!",
-                "Brrr! It's cold out here!",
-                "Anyone up for a sledding race?",
-                "Just caught a big one!",
-                "Greetings from the South Pole!",
-                "Check out my new igloo!",
-                "Krill anyone?"
-            ];
+        const chatArea = document.getElementById('chatArea');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const username = localStorage.getItem('username') || 'Guest'; // Use stored username or 'Guest'
 
-            const randomIndex = Math.floor(Math.random() * messages.length);
-            const randomMessage = messages[randomIndex];
-
-            document.getElementById('messageArea').textContent = randomMessage;
-
-            // Generate a random time between 3 and 15 seconds (adjust as needed)
-            const randomTime = Math.floor(Math.random() * 12000) + 3000;
-
-            setTimeout(displayRandomMessage, randomTime);
+        function appendMessage(user, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>${user}:</strong> ${message}`;
+            chatArea.appendChild(messageElement);
+            chatArea.scrollTop = chatArea.scrollHeight; // Scroll to bottom
         }
 
-        // Start the random message display
-        displayRandomMessage();
+        sendButton.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            if (message) {
+                appendMessage(username, message);
+                chatInput.value = ''; // Clear input
+            }
+        });
+
+        chatInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+
+       
+
+            setInterval(function() {
+                const randomMessage = simulatedMessages[Math.floor(Math.random() * simulatedMessages.length)];
+                appendMessage(randomMessage.user, randomMessage.message);
+            }, 5000 + Math.random() * 5000); // Random interval between 5-10 seconds
+        }
+
+        simulateChat();
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB7GHDa4mOd004A7biTeuWqVvgZ1my-6-w",
+    authDomain: "icechat-414db.firebaseapp.com",
+    databaseURL: "https://icechat-414db-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "icechat-414db",
+    storageBucket: "icechat-414db.firebasestorage.app",
+    messagingSenderId: "566786744330",
+    appId: "1:566786744330:web:ffcc10b54cff466a30fff3",
+    measurementId: "G-JKN4D7RTCC"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
     </script>
 </body>
 </html>
