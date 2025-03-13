@@ -34,7 +34,8 @@
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        select {
             width: calc(100% - 22px);
             padding: 10px;
             margin-bottom: 15px;
@@ -73,6 +74,11 @@
         <h2>Sign Up</h2>
         <input type="text" id="signupUsername" placeholder="Username" required>
         <input type="password" id="signupPassword" placeholder="Password" required>
+        <select id="emailDomain" required>
+            <option value="">Select Email Domain</option>
+            <option value="@icefloe.po">@icefloe.po</option>
+            <option value="@fishmail.po">@fishmail.po</option>
+        </select>
         <button onclick="signup()">Sign Up</button>
         <p class="login-link" onclick="redirectToLogin()">Already have an account? Login</p>
     </div>
@@ -81,17 +87,18 @@
         function signup() {
             const username = document.getElementById('signupUsername').value;
             const password = document.getElementById('signupPassword').value;
+            const emailDomain = document.getElementById('emailDomain').value;
 
             // In a real application, you would send this data to a server for storage.
             // For now, let's just log it to the console.
-            console.log('Signup:', username, password);
+            console.log('Signup:', username, password, emailDomain);
 
             // Example: Redirect to main page after successful signup
-          // window.location.href = "index.html";
+            // window.location.href = "index.html";
         }
 
         function redirectToLogin() {
-            window.location.href = "login.html"; // Redirect to the login page
+            window.location.href = "login.html";
         }
     </script>
 </body>
