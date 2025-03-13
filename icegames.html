@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ice Games - Penguin Online</title>
     <style>
-        body {
+          body {
             font-family: 'Arial Black', sans-serif;
             background: linear-gradient(to bottom, #000080, #ADD8E6);
             color: #FFFFFF;
@@ -25,6 +25,7 @@
             border: 3px double #FFFFFF;
             border-radius: 15px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            position: relative; /* Added for username positioning */
         }
 
         h1 {
@@ -77,52 +78,65 @@
         a:hover {
             text-decoration: underline;
         }
-        #gameLink {
-            margin-top: 20px;
-            font-size: 1.2em;
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        #gameLink a {
-            color: #00FFFF;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 2px solid #00FFFF;
+        #gameSearchInput {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #87CEEB;
             border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
         }
 
-        #gameLink a:hover {
+        #gameSearchButton {
+            padding: 10px 20px;
+            background-color: #00FFFF;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #gameSearchButton:hover {
             background-color: #ADD8E6;
-            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Ice Games</h1>
-        <p>Play Fish Frenzy, Sledding Challenge, and more!</p>
-        <p>Compete for high scores on the leaderboards.</p>
-        <p>Game on and have some frosty fun!</p>
+        <p>Search for games on the Steam Store!</p>
 
-        <div id="gameLink">
-            <a href="https://store.steampowered.com/" target="_blank">Play <span id="gameName"></span></a>
+        <div class="search-container">
+            <input type="text" id="gameSearchInput" placeholder="Enter game title...">
+            <button id="gameSearchButton">Search Steam</button>
         </div>
 
         <a href="index.html">Back to Main Page</a>
     </div>
 
     <script>
-        function generateRandomGameName() {
-            const adjectives = ["Frosty", "Icy", "Slippery", "Arctic", "Penguin", "Glacial", "Krill", "Blizzard"];
-            const nouns = ["Dash", "Adventure", "Rumble", "Challenge", "Mania", "Quest", "Odyssey", "Showdown"];
+        const gameSearchInput = document.getElementById('gameSearchInput');
+        const gameSearchButton = document.getElementById('gameSearchButton');
 
-            const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-            const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+        gameSearchButton.addEventListener('click', () => {
+            const searchTerm = gameSearchInput.value.trim();
+            if (searchTerm) {
+                const steamSearchUrl = `https://store.steampowered.com/search/?term=${encodeURIComponent(searchTerm)}`;
+                window.open(steamSearchUrl, '_blank'); // Open in a new tab
+            }
+        });
 
-            return `${randomAdjective} ${randomNoun}`;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('gameName').textContent = generateRandomGameName();
+        gameSearchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                gameSearchButton.click();
+            }
         });
     </script>
 </body>
