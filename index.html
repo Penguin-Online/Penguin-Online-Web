@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penguin Online - Your Gateway to the Penguin Web!</title>
+    <title>Penguin Online - Your Gateway to the Icy Web!</title>
     <style>
         body {
             font-family: 'Arial Black', sans-serif;
@@ -99,21 +99,30 @@
             background-color: #ADD8E6;
         }
 
-        #usernameDisplay {
+        #userButton {
             position: absolute;
             top: 10px;
             right: 10px;
             font-size: 1em;
-            color: #00FFFF;
+            color: #000000;
+            background-color: #00FFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        #userButton:hover {
+            background-color: #ADD8E6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="usernameDisplay"></div>
+        <button id="userButton" style="display: none;"></button>
         <h1>Penguin Online</h1>
         <img class="penguin-image" src="penguin.png" alt="Penguin Online Mascot">
-        <p>Your Gateway to the Penguin Web!</p>
+        <p>Your Gateway to the Icy Web!</p>
 
         <div class="feature">
             <h2>P-Mail! <a href="pmail.html">Check Your Fishmail!</a></h2>
@@ -160,16 +169,22 @@
         </div>
 
         <div class="footer">
-            <p>&copy; 2024 Penguin Online. Waddle into the Web!</p>
+            <p>&copy; 2024 Penguin Online. Waddle into the Web! Totally Awesome!</p>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const username = localStorage.getItem('username');
             if (username) {
-                document.getElementById('usernameDisplay').textContent = `Welcome, ${username}!`;
+                const userButton = document.getElementById('userButton');
+                userButton.textContent = `Welcome, ${username}!`;
+                userButton.style.display = 'block'; // Show user button
                 document.getElementById('loginLink').style.display = 'none'; // Hide login button
             }
-                </script>
+            // Place holder for penguin image.
+            let penguinImage = document.querySelector(".penguin-image");
+            if(penguinImage){
+                penguinImage.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAAWFJREFUeF7t3d1xwjAUhWFLiU2l8yX/o0i0yQ2h4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4w7iQz2g4
+                    </script>
 </body>
 </html>
