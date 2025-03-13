@@ -156,5 +156,55 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+        sendButton.addEventListener('click', () => {
+    console.log('Send button clicked!');
+    if (chatInput.value) {
+        database.ref('messages').push({
+            user: username,
+            message: chatInput.value,
+        });
+        chatInput.value = '';
+    }
+});
+    console.log('Firebase app:', app);
+console.log('Firebase database:', database);
+        sendButton.addEventListener('click', () => {
+    if (chatInput.value) {
+        console.log('Pushing message to Firebase...');
+        database.ref('messages').push({
+            user: username,
+            message: chatInput.value,
+        });
+        chatInput.value = '';
+    }
+});
+    sendButton.addEventListener('click', () => {
+    if (chatInput.value.trim() !== '') { // Check if the input is not empty or just whitespace
+        database.ref('messages').push({
+            user: username,
+            message: chatInput.value,
+        });
+        chatInput.value = '';
+    } else {
+        console.log('Input field is empty.');
+    }
+});
+    sendButton.addEventListener('click', () => {
+    if (chatInput.value.trim() !== '') {
+        try{
+            database.ref('messages').push({
+                user: username,
+                message: chatInput.value,
+            });
+            chatInput.value = '';
+            console.log("message pushed to firebase");
+        } catch (e){
+            console.log("firebase push error:", e);
+        }
+
+    } else {
+        console.log('Input field is empty.');
+    }
+});
 </script>
 </html>
