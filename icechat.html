@@ -60,43 +60,7 @@
         <a href="index.html">Back to Main Page</a>
     </div>
 
-    <script>
-        const chatArea = document.getElementById('chatArea');
-        const chatInput = document.getElementById('chatInput');
-        const sendButton = document.getElementById('sendButton');
-        const username = localStorage.getItem('username') || 'Guest'; // Use stored username or 'Guest'
-
-        function appendMessage(user, message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            messageElement.innerHTML = `<strong>${user}:</strong> ${message}`;
-            chatArea.appendChild(messageElement);
-            chatArea.scrollTop = chatArea.scrollHeight; // Scroll to bottom
-        }
-
-        sendButton.addEventListener('click', function() {
-            const message = chatInput.value.trim();
-            if (message) {
-                appendMessage(username, message);
-                chatInput.value = ''; // Clear input
-            }
-        });
-
-        chatInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                sendButton.click();
-            }
-        });
-
-       
-
-            setInterval(function() {
-                const randomMessage = simulatedMessages[Math.floor(Math.random() * simulatedMessages.length)];
-                appendMessage(randomMessage.user, randomMessage.message);
-            }, 5000 + Math.random() * 5000); // Random interval between 5-10 seconds
-        }
-
-        simulateChat();
+    <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
@@ -112,14 +76,12 @@
     projectId: "icechat-414db",
     storageBucket: "icechat-414db.firebasestorage.app",
     messagingSenderId: "566786744330",
-    appId: "1:566786744330:web:ffcc10b54cff466a30fff3",
-    measurementId: "G-JKN4D7RTCC"
+    appId: "1:566786744330:web:e7b0aa1de2b0f44a30fff3",
+    measurementId: "G-8V8R2C8S3J"
   };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-
-    </script>
-</body>
+</script>
 </html>
